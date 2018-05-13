@@ -27,7 +27,7 @@ export class FacebookComponent implements OnInit {
     
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-                            console.log("test name",socialPlatform);
+                            console.log("test name");
         console.log(socialPlatform+" sign in data : " , userData);
         // Now sign-in with userData
             
