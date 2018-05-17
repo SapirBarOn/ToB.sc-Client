@@ -10,7 +10,6 @@ export class AboutUsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("Test Shiran");
   }
 
 }
