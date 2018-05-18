@@ -50,6 +50,19 @@ button:hover{
     background-color:#585858;
 }
 
+#Facebook{
+    height: 50px;
+    width: 100px;
+    background-color: #3B5998;
+    color: white;
+}
+
+
+#Google{
+    background-color: #F44336;
+    color: white;
+}
+
 #res{
   text-align: center;
 }
