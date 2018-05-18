@@ -208,8 +208,8 @@ export class DataService {
 
   filterInstitutes(location:string,
                    subEng:string,
-                   dorms:boolean,
-                   uniSalary:boolean,
+                   dorms:string,
+                   uniSalary:string,
                    institute:string,callback: Function){
     this.http.post('https://tobsc-ws.herokuapp.com/filterInstitutes',
     {'location':location,'subEng':subEng,'dorms':dorms,
