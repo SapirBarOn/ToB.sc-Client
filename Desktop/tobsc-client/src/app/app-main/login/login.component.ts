@@ -3,6 +3,7 @@ import { DataService } from '../../data.service';
 import { Router } from '@angular/router';
 import { CurrentUser } from '../../app-shared/current-user';
 import { User } from '../../model/user.model';
+import { Response, Headers } from '@angular/http';
 import {
     AuthService,
     FacebookLoginProvider,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   constructor(private dataService : DataService,
               private router:Router , 
               private currentUserService:CurrentUser,
+              private facebookLogin: FacebookLoginProvider,
               private socialAuthService: AuthService ) { }
 
   ngOnInit() {
@@ -95,6 +97,7 @@ export class LoginComponent implements OnInit {
             console.log(userData.name);
             console.log(userData.token);
             console.log(userData.image);
+            console.log(userData.provider);
             let user = new User();
                 user.setId(userData.id);
                 user.setFirstName(userData.name);
@@ -106,6 +109,8 @@ export class LoginComponent implements OnInit {
                 
           }
         );
+
+
   }
 
 }
