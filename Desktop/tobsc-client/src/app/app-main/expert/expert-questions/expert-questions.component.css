@@ -1,0 +1,98 @@
+#container{
+  width: 100%;
+}
+
+.box{
+  width:1270px;
+  padding:20px;
+  background-color:#fff;
+  border:1px solid #ccc;
+  border-radius:5px;
+  margin-top:25px;
+  box-sizing:border-box;
+}
+
+.btn{
+  background-color: #84b4a7;
+  border-color: #84b4a7;
+  margin-top: 5px;
+}
+
+#cancel{
+  margin-right: 15px;
+  background-color: #cf411b;
+  border-color: #7d331f;
+}        
+
+#add{
+  font-size: 35px;
+}
+
+table{
+  direction: rtl;
+}
+
+th{
+  text-align: center;
+}
+
+td{
+  text-align: right;
+}
+
+.glyphicon ,.fas{
+  font-size: 20px;
+  cursor:pointer;
+}
+
+input{
+  text-align: center;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+label{
+  float: right;
+}
+
+.form-container {
+    display:block;
+    width:100%;
+    padding:2em;
+    margin: 2em auto;
+}
+
+.modal-title{
+  margin-right: 195px;
+}
+
+.close{
+    float: right;
+    margin-right: -280px;
+}
+
+.alert{
+  display: none;
+  width: 400px;
+  text-align: center;
+  margin-right: 350px;
+  margin-top: -20px;
+}
+
+.back{
+    float: right;
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    border: 2px solid #7d331f;
+    background-color:#cf411b;
+    color:#ffffff;
+    font-size: 17px;
+    cursor: pointer;
+    outline:none;
+    margin-top:0%;
+}
+
+.back:hover{
+        background-color:#b13615;
+    }

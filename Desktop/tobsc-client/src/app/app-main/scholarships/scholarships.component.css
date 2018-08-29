@@ -1,0 +1,99 @@
+#filter{
+    margin-left:40%;
+    margin-top: 5%; 
+    margin-bottom: 2%;
+    
+}
+
+select{
+    display: inline-block;
+    width: 23%;
+    direction: rtl;
+}
+
+.btn{
+    background: #84b4a7;
+    margin-right: 10px;
+    border: #84b4a7;
+    width: 50px;
+    height: 30px;
+}
+
+.name{
+    text-align: center;
+    font-size: 17px;
+}
+
+img{
+    margin: 0 auto;
+    display: block;
+    width: 180px;
+    height: 130px;
+}
+
+#mainLayout3{
+    background: #f9f9f9;
+    position: relative;
+    padding-left:1%;
+    padding-top:5%;
+}
+
+#mainLayout3 > *{
+    width:300px;
+    height:200px;
+    border: 1px solid #020741;
+    background:#ffffff;
+    display:inline-block;  
+    margin-left:2%;
+    margin-bottom:10%;
+    cursor:  pointer;   
+}
+
+#wrapperLayout3{
+    max-width:1000px;
+    width: 100%;
+    margin:0 auto;
+}
+
+button{
+    /*float: right;*/
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    border: 2px solid #7d331f;
+    background-color:#cf411b;
+    color:#ffffff;
+    font-size: 17px;
+    cursor: pointer;
+    outline:none;
+    margin-top:2%;
+    display: block;
+    margin:0 auto;
+}
+
+button:hover{
+        background-color:#b13615;
+    }
+
+
+@media (max-width: 634px) {
+    #mainLayout3 > *{
+        margin:0 auto;
+        display: block;
+        margin-bottom:10%; 
+    }
+    
+    #filter{
+        margin:0 auto;
+    }
+
+    select{
+        width: 100%;
+    }
+
+    .btn{
+        display: block;
+        margin :0 auto;
+    }
+
+}

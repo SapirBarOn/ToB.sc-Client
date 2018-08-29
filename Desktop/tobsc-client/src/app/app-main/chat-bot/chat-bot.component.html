@@ -1,17 +1,50 @@
-<body>
-    <blockquote id="chat">
-             <p>שלום אני מומחה וירטואלי</p>
-             <p> אני אשאל אותך מספר שאלות</p>
-             <p>{{result}}</p>
-             <div *ngFor = "let mg of messages;let first = first ;let evenMess=even ; let oddMess=odd ;" [ngClass]="{odd:oddMess,even:evenMess,first:first}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<button class="back" (click)="goBack()">חזור <span class="glyphicon glyphicon-repeat"></span></button>
+<div class="w3-content w3-padding-large w3-margin-top" id="portfolio">
+  <section class="w3-image w3-margin-top" id="chat">
+            <div *ngIf="showP1">
+              <p>ברוך הבא למערכת ToB.sc!
+אשמח להתאים לך תחומי הנדסה בעזרת מספר שאלות...</p>
+            </div>
+<!--             <div *ngIf="showP2">
+              <p> אני אשאל אותך מספר שאלות</p> 
+            </div> -->
+            <div *ngFor = "let mg of messages;let evenMess=even ; let oddMess=odd  ; let last=last ;" [ngClass]="{odd:oddMess,even:evenMess,last:last}">
                 {{mg.content}}
-             </div>
-    </blockquote>
-    <div class="input">
-            <input type="text" class="inputtext" [(ngModel)]="content" (keydown)="handleSubmit($event)"> 
-            <button class="replay" (click)="send(content)">שלח</button>
-    </div>
-
-    <button routerLink="/subEngByUser" (click)="getAnswer()">תוצאות</button>
-</body>
-
+              <div *ngIf="evenMess">
+                  <div class="arrow-right"></div>
+                  <img class="psychImg" src="../../../assets/images/avatar-psychologist.png">
+              </div> 
+              <div *ngIf="oddMess">
+                  <div class="arrow-left"></div>
+                  <img class="userImg" src="../../../assets/images/User_Avatar.png">
+              </div>
+            </div> 
+            <!-- <div class="messagesResult" *ngFor ="let mg of messageResult"> 
+             {{mg.content}}
+                 <div class="arrow-right"></div>
+                 <img class="psychImg1" src="../../../assets/images/avatar-psychologist.png">
+            </div> -->
+            <div *ngIf="buttonSubEng">
+                <button routerLink="/mySubEng" class="mySubEng">למעבר לתוצאות תחומי ההנדסה</button>
+            </div>
+  </section>
+  <section class="w3-image w3-margin-top" id="answer">
+            <div class="select" *ngFor="let s of selects;let i=index; let first = first; let last = last ;" [ngClass]="{first:first,last:last}"> 
+                <button (click)="send(s.name)">
+                  <div *ngIf="first">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                  </div>
+                  <div *ngIf="i==1">
+                    <span class="glyphicon glyphicon-question-sign"></span>
+                  </div>
+                  <div *ngIf="last">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                  </div>
+                </button> 
+            </div>
+  </section>
+</div>

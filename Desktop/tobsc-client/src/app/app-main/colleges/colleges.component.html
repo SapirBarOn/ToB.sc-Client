@@ -1,14 +1,44 @@
 <meta charset="utf-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<button class="back" (click)="goBack()">חזור <span class="glyphicon glyphicon-repeat"></span></button>
 <div id="filter">
-
+   <button class="btn btn-info" id="userLocation" (click)="getUserLocation()" >מיין לפי מיקום נוכחי</button>
     <form [formGroup]="myform" (ngSubmit)="filter(myform.value)">  
+    
+        <select class="form-control" formControlName="location">
+            <option value="null" >מיקום</option>
+            <option *ngFor="let l of locations"
+              [value]="l"> 
+              {{l}} 
+             </option>
+        </select>
 
-    <button id="getMap" (click)="openMap(mapModal)" type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-map-marker"></span> מוסדות במפה
-    </button>
+        <select class="form-control" formControlName="subEng">
+            <option value="null" >תחום הנדסה</option>
+            <option *ngFor="let s of subEngs"
+              [value]="s"> 
+              {{s}} 
+             </option>
+        </select>
 
-        <input type="submit" class="btn btn-info" value="סינון" [disabled]="!myform.valid">
+        <select class="form-control" formControlName="institute">
+            <option value="null" >סוג מוסד</option>
+            <option *ngFor="let i of institute"
+              [value]="i"> 
+              {{i}} 
+             </option>
+        </select>
+
+        <select class="form-control" formControlName="salary">
+            <option value="null" >סוג שכ"ל</option>
+            <option *ngFor="let s of salary"
+              [value]="s"> 
+              {{s}} 
+             </option>
+        </select>
 
         <select class="form-control" formControlName="dorms">
             <option value="null" >מעונות?</option>
@@ -18,53 +48,132 @@
              </option>
         </select>
 
-        <select class="form-control" formControlName="salary">
-            <option value="null" >בחר סוג שכ"ל</option>
-            <option *ngFor="let s of salary"
-              [value]="s"> 
-              {{s}} 
-             </option>
-        </select>
+        <input type="submit" class="btn btn-info" value="חפש" [disabled]="!myform.valid">
 
-        <select class="form-control" formControlName="institute">
-            <option value="null" >בחר סוג מוסד</option>
-            <option *ngFor="let i of institute"
-              [value]="i"> 
-              {{i}} 
-             </option>
-        </select>
+        <button class="btn btn-info" id="Extend" (click)="ExtendedFilter()" >חיפוש מורחב</button>
+        <button id="getMap" (click)="openMap(mapModal)" type="button" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-map-marker"></span> מוסדות במפה
+        </button>
+      <div id="ExtendedFilter" *ngIf="extend">
 
-        <select class="form-control" formControlName="subEng">
-            <option value="null" >בחר תחום הנדסה</option>
-            <option *ngFor="let s of subEngs"
-              [value]="s"> 
-              {{s}} 
-             </option>
-        </select>
+<!--         <div id="ExtendedFilter">
+ -->          <select class="form-control" formControlName="psychometric">
+              <option value="null" >פסיכומטרי</option>
+              <option *ngFor="let p of psychometric"
+                [value]="p"> 
+                {{p}} 
+               </option>
+          </select>
 
-        <select class="form-control" formControlName="location">
-            <option value="null" >בחר מיקום</option>
-            <option *ngFor="let l of locations"
-              [value]="l"> 
-              {{l}} 
-             </option>
-        </select>
+                   <input id="grade" class="form-control" type="number" name="quantity" min="200" max="800" placeholder="ציון" formControlName="psychometricGrade">
+        
+<!--         </div>
+ -->
+<!--         <div id="ExtendedFilter">
+ -->          <select class="form-control" formControlName="mathUnits">
+              <option value="null" >יח' במתמטיקה</option>
+              <option *ngFor="let m of math"
+                [value]="m"> 
+                {{m}} 
+               </option>
+          </select>
+
+          <input id="grade" class="form-control" type="number" name="quantity" min="0" max="100" placeholder="ציון" formControlName="mathGrade">
+<!--         </div>
+ -->
+<!--         <div id="ExtendedFilter">
+ -->          <select class="form-control" formControlName="englishUnits">
+              <option value="null" >יח' באנגלית</option>
+              <option *ngFor="let e of english"
+                [value]="e"> 
+                {{e}} 
+               </option>
+          </select>
+
+          <input id="grade" class="form-control" type="number" name="quantity" min="0" max="100" placeholder="ציון" formControlName="englishGrade">
+<!--           </div>
+ -->
+<!--         <div id="ExtendedFilter">
+ -->          <select class="form-control" formControlName="physicsUnits">
+              <option value="null" >יח' בפיסיקה</option>
+              <option *ngFor="let p of physics"
+                [value]="p"> 
+                {{p}} 
+              </option>
+          </select>
+
+          <input id="grade" class="form-control" type="number" name="quantity" min="0" max="100" placeholder="ציון" formControlName="physicsGrade">
+      </div>
+
 
     </form>
 </div>
 
 
-<div id="institutes">
-    <section (click)="openInfo(CollegeModal,c)" class="frame" *ngFor="let c of colleges">
-        <section class="pic">
-            <img src="{{c.pic}}">
-        </section>
-        <section class="logo">
-            <img src="{{c.logo}}">            
-        </section>
-        <p class="name">{{c.hebName}}</p>
-    </section>    
+<div class="w3-content w3-padding-large w3-margin-top" id="portfolio">
+  <section *ngFor="let c of colleges" class="w3-image w3-margin-top" id="frame">
+          <section (click)="intoCollege(c)" class="info">
+              <img src="{{c.logo}}">   
+              <p class="address"><span>כתובת:</span> {{c.address}}</p>
+              <p class="tel"><span>טל':</span> {{c.tel}}</p>
+              <p class="subEng"><span>תחומי הנדסה:</span> {{c.subEng}}</p>         
+          </section>
+          <section (click)="liked(c)" class="favorite">
+              <span *ngIf="!c.liked" class="glyphicon glyphicon-heart-empty"></span>
+              <span *ngIf="c.liked" class="glyphicon glyphicon-heart"></span>
+          </section>
+          <section class="KM" *ngIf="showKM">
+             <p>מרחק ממקומך : {{c.distanceKM}} ק"מ</p> 
+          </section>
+          <section class="probability" *ngIf="showProbability">
+             <p id="probability"><span>סיכויי קבלה:</span> {{c.userProbability}}%</p> 
+          </section>
+
+<!--           <section class="rating">
+          <input class="data-cls-stars" data-role="rating" data-stars="10">
+
+          </section> -->
+  </section>
 </div>
+  
+  <!-- <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-container w3-white" *ngFor="let c of colleges" id="frame">
+         <section (click)="intoCollege(c)" class="info">
+            <img src="{{c.logo}}">   
+            <p class="address"><span>כתובת:</span> {{c.address}}</p>
+            <p class="tel"><span>טל':</span> {{c.tel}}</p>
+            <p class="subEng"><span>תחומי הנדסה:</span> {{c.subEng}}</p>         
+        </section>
+        <section class="favorite">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+        </section>
+        <section class="rate">
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </section>
+      </div>
+    </div>  -->
+<!-- <div id="institutes">
+   <section class="frame" *ngFor="let c of colleges">
+        <section (click)="intoCollege(c)" class="info">
+            <img src="{{c.logo}}">   
+            <p class="address"><span>כתובת:</span> {{c.address}}</p>
+            <p class="tel"><span>טל':</span> {{c.tel}}</p>
+            <p class="subEng"><span>תחומי הנדסה:</span> {{c.subEng}}</p>         
+        </section>
+        <section class="favorite">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+        </section>
+        <section class="rate">
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </section>
+    </section>    
+</div> -->
 
 
 <ng-template #mapModal let-c="close" let-d="dismiss">
@@ -91,7 +200,7 @@
 </ng-template>
 
 
-<ng-template #CollegeModal let-c="close" let-d="dismiss">
+<!-- <ng-template #CollegeModal let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">{{cChoosed.hebName}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -114,5 +223,4 @@
     <h5>:טלפון</h5>
     <p>{{cChoosed.tel}}</p>    
   </div>
-</ng-template>
-
+</ng-template> -->

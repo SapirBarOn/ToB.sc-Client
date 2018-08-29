@@ -1,0 +1,44 @@
+#container{
+  width: 100%;
+}
+
+.box{
+  width:1270px;
+  padding:20px;
+  background-color:#fff;
+  border:1px solid #ccc;
+  border-radius:5px;
+  margin-top:25px;
+  box-sizing:border-box;
+  
+}
+
+h2{
+    text-align: center;
+}
+
+canvas{
+    margin-bottom:50px;
+}
+
+hr{
+    width: 400px;
+    color:#ccc;
+}
+.back{
+    float: right;
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    border: 2px solid #7d331f;
+    background-color:#cf411b;
+    color:#ffffff;
+    font-size: 17px;
+    cursor: pointer;
+    outline:none;
+    margin-top:0%;
+}
+
+.back:hover{
+        background-color:#b13615;
+    }

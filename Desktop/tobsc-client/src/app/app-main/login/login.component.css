@@ -1,5 +1,5 @@
 #login{
-  height: 380px;
+  height: 390px;
   padding: 15px;
   width: 350px;
   display: block;
@@ -7,14 +7,18 @@
   border:2px solid #d3d3d3;
   background-color: #f9f9f9;
   text-align: right;
-  margin-top: 50px; 
+  margin-top: 30px; 
   left: 500px;
 }
 
 h2{
   font-size: 20px;
   font-family: arial;
+  margin-top: -5%;
+}
 
+#pass{
+  margin-top:3%;
 }
 
 form{
@@ -28,6 +32,7 @@ input {
   width: 280px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  direction: ltr;
 }
 
 ::placeholder{
@@ -51,17 +56,21 @@ button{
 button:hover{
     background-color:#585858;
 }
+
 #forgot{
   text-align: left;
+  margin-left: 9%;
   color: blue;
   cursor: pointer;    
- }
+}
+
 #signIn{
   width: 280px;
   height: 35px;
   display: block;
   margin-bottom:0px;
 }
+
 #or{
   text-align: center;
   margin-left: 30px;
@@ -73,7 +82,6 @@ button:hover{
   background-color: #3B5998;
   color: white;
 }
-
 
 #Google{
     background-color: #F44336;
