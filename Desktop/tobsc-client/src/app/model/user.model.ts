@@ -1,10 +1,14 @@
 export class User {
-      private _id:string;
-      private firstName:string;
-      private lastName:string;
-      private email:string;
+      public _id:string;
+      public firstName:string;
+      public lastName:string;
+      public email:string;
       private password:string;
-      private answers:number[]=[];
+      public answers:number[]=[];
+      public age:number;
+      public WorkExperience:string;
+      public gender:string;
+      public similarity:number;
 
   constructor(){}
 
@@ -61,4 +65,36 @@ export class User {
     return this.answers;
   }
 
+  public setAge(a:number){
+    this.age= a;
+  }
+
+  public getAge(){
+    return this.age;
+  }
+
+  public setWorkExperience(w:string){
+    this.WorkExperience=w;
+  }
+
+  public getWorkExperience(){
+    return this.WorkExperience;
+  }
+
+  public setGender(g:string){
+    this.gender=g;
+  }
+
+  public getGender(){
+    return this.gender;
+  }
+  
+  public setSimilarity(same:number){
+    this.similarity=same;
+  }
+
+  public getSimilarity(){
+    return this.similarity;
+  }  
+      
 }

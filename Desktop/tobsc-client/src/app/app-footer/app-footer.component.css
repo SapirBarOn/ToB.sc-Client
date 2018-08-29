@@ -3,3 +3,9 @@ div{
     background: #FFFFFF;
 }
 
+p{
+    font-size: 15px;
+    text-align: center;
+    padding-top: 1.5%;
+    direction: rtl;
+}

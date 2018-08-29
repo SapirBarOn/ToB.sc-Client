@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+//import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 import {
@@ -28,11 +29,30 @@ import { ExpertComponent } from './app-main/expert/expert.component';
 import { ChatBotComponent } from './app-main/chat-bot/chat-bot.component';
 import { SubEngByUserComponent } from './app-main/subEngByUser/subEngByUser.component';
 import { CurrentUser } from './app-shared/current-user';
+import { CurrentColleges } from './app-shared/current-college';
+import { CurrentDepartments } from './app-shared/current-department';
+import { CurrentScholarships } from './app-shared/current-scholarship';
+import { CurrentQuestion } from './app-shared/current-question';
+
+
+
 import { CollegesComponent } from './app-main/colleges/colleges.component';
 import { FacebookComponent } from './app-main/facebook/facebook.component';
 import { AgmCoreModule } from '@agm/core';
 import { DepartmentsComponent } from './app-main/departments/departments.component';
 import { ForgotPasswordComponent } from './app-main/forgot-password/forgot-password.component';
+import { IntoCollegeComponent } from './app-main/colleges/into-college/into-college.component';
+import { IntoDepartmentsComponent } from './app-main/departments/into-departments/into-departments.component';
+import { ScholarshipsComponent } from './app-main/scholarships/scholarships.component';
+import { IntoScholarshipsComponent } from './app-main/scholarships/into-scholarships/into-scholarships.component';
+import { MyProfileComponent } from './app-main/my-profile/my-profile.component';
+import { MyFavoriteComponent } from './app-main/my-favorite/my-favorite.component';
+import { MySubEngComponent } from './app-main/my-sub-eng/my-sub-eng.component';
+import { ExpertQuestionsComponent } from './app-main/expert/expert-questions/expert-questions.component';
+import { ExpertCrawlerComponent } from './app-main/expert/expert-crawler/expert-crawler.component';
+import { ChartPieComponent } from './app-main/expert/chart-pie/chart-pie.component';
+import { ExpertUsersComponent } from './app-main/expert/expert-users/expert-users.component';
+import { SubEngComponent } from './app-main/sub-eng/sub-eng.component';
 
 
 // Configs 
@@ -64,7 +84,20 @@ const appRoutes: Routes = [
   {path: 'colleges', component: CollegesComponent},
   {path: 'departments', component: DepartmentsComponent},
   {path: 'facebook', component: FacebookComponent},
-  {path: 'forgotPassword', component: ForgotPasswordComponent}
+  {path: 'forgotPassword', component: ForgotPasswordComponent},
+  {path: 'intoCollege', component: IntoCollegeComponent},
+  {path: 'intoDepartments', component: IntoDepartmentsComponent},
+  {path: 'scholarships',component:ScholarshipsComponent},
+  {path: 'intoScholarships',component:IntoScholarshipsComponent},
+  {path: 'myProfile',component:MyProfileComponent},
+  {path: 'myFavorite',component:MyFavoriteComponent},
+  {path: 'mySubEng',component:MySubEngComponent},
+  {path: 'expert-questions',component:ExpertQuestionsComponent},
+  {path: 'expert-crawler',component:ExpertCrawlerComponent},
+  {path: 'chart-pie',component:ChartPieComponent},
+  {path: 'expert-users',component:ExpertUsersComponent},
+
+
 
 ];
 
@@ -85,6 +118,18 @@ const appRoutes: Routes = [
     FacebookComponent,
     DepartmentsComponent,
     ForgotPasswordComponent,
+    IntoCollegeComponent,
+    IntoDepartmentsComponent,
+    ScholarshipsComponent,
+    IntoScholarshipsComponent,
+    MyProfileComponent,
+    MyFavoriteComponent,
+    MySubEngComponent,
+    ExpertQuestionsComponent,
+    ExpertCrawlerComponent,
+    ChartPieComponent,
+    ExpertUsersComponent,
+    SubEngComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -96,12 +141,17 @@ const appRoutes: Routes = [
     HttpModule,
     SocialLoginModule,
     NgbModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   // AngularFontAwesomeModule
   ],
   exports: [RouterModule],
   providers: [
     DataService,
     CurrentUser,
+    CurrentColleges,
+    CurrentDepartments,
+    CurrentScholarships,
+    CurrentQuestion,
       {
         provide: AuthServiceConfig,
         useFactory: getAuthServiceConfigs

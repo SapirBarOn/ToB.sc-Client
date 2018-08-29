@@ -33,7 +33,7 @@ export class DataService {
   }
 
   allUsers(callback: Function) {
-    this.http.get('https://tobsc-ws.herokuapp.com/getAllData')
+    this.http.get('https://finalproject201808.herokuapp.com/getAllData')
     .subscribe(
       (res: Response ) => {
           callback( res.json() );
@@ -42,7 +42,7 @@ export class DataService {
   }
 
   allQuestions(callback: Function) {
-    this.http.get('https://tobsc-ws.herokuapp.com/getAllQuestions')
+    this.http.get('https://finalproject201808.herokuapp.com/getAllQuestions')
     .subscribe(
       (res: Response ) => {
         callback( res.json() );
@@ -56,7 +56,7 @@ export class DataService {
 
 
   getAllInstitutes(callback: Function) {
-    this.http.get('https://tobsc-ws.herokuapp.com/getAllInstitutes')
+    this.http.get('https://finalproject201808.herokuapp.com/getAllInstitutes')
     .subscribe(
       (res: Response ) => {
         callback( res.json() );
@@ -67,11 +67,49 @@ export class DataService {
       })
     );
   }
+getAllScholarships(callback: Function) {
+      this.http.get('https://finalproject201808.herokuapp.com/getAllScholarships')
+      .subscribe(
+        (res: Response ) => {
+            callback( res.json() );
+        }
+      )
+    }
 
+  filterScholarships(
+                   choose:string,
+                   origin:string,
+                   location:string,
+                   callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/filterScholarships',
+    {'choose':choose,'origin':origin, 'location':location})
+    .subscribe(
+      (res: Response ) => {
+        callback(res.json());
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );   
+  }
 
+  getTypeLog(logsType:string,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/getTypeLog',
+    {'logsType':logsType})
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
 
   login(email:string,password:string,callback: Function) {
-    this.http.post('https://tobsc-ws.herokuapp.com/login',{'email':email,'password':password})
+    this.http.post('https://finalproject201808.herokuapp.com/login',{'email':email,'password':password})
     .subscribe(
       (res: Response ) => {
         callback(res.json());
@@ -85,9 +123,9 @@ export class DataService {
   }
 
 
-  createUser(firstName:string,lastName:string,email:string,password:string,callback: Function){
-    this.http.post('https://tobsc-ws.herokuapp.com/createNewAccount',
-    {'firstName':firstName,'lastName':lastName,'email':email,'password':password})
+  createUser(firstName:string,lastName:string,email:string,password:string,WorkExperience:string,gender:string,age:number,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/createNewAccount',
+    {'firstName':firstName,'lastName':lastName,'email':email,'password':password,'WorkExperience':WorkExperience,'gender':gender,'age':age})
     .subscribe(
       (res: Response ) => {
         callback( res.json() );
@@ -99,10 +137,37 @@ export class DataService {
     );
   }
 
+  updateUser(userId:string,firstName:string,lastName:string,email:string,WorkExperience:string,gender:string,age:number,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/updateUser',
+    {'userId':userId,'firstName':firstName,'lastName':lastName,'email':email,'WorkExperience':WorkExperience,'gender':gender,'age':age})
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
 
+  getSubEngByUserId(userID:string,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/getUserSubEngById',
+    {'userID':userID})
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
+  
   getQuestionById(data:number, callback:Function){
     let idNum=data;
-    this.http.get('https://tobsc-ws.herokuapp.com/getQuestion/'+idNum)
+    this.http.get('https://finalproject201808.herokuapp.com/getQuestion/'+idNum)
     .subscribe(
       (response: Response) =>  {
         console.log(response.json());
@@ -116,6 +181,20 @@ export class DataService {
   }
 
 
+getORcreateSubEngByUser(userID:string,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/createSubEngByUserOrReturn',
+    {'userID':userID})
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );
+
+  }
 
   calculateAndSaveSubEng(userId: string,
                          dataAns: number[],
@@ -126,7 +205,7 @@ export class DataService {
                          managementArr:number[],
                          buildingArr:number[],
                          machineArr:number[],callback: Function){
-    this.http.get('https://tobsc-ws.herokuapp.com/calculateSubEngByUser/'+userId+'/'+dataAns+'/'+softwareArr+'/'+chemistryArr+'/'+electronicArr+'/'+medicalArr+'/'+managementArr+'/'+buildingArr+'/'+machineArr)
+    this.http.get('https://finalproject201808.herokuapp.com/calculateSubEngByUser/'+userId+'/'+dataAns+'/'+softwareArr+'/'+chemistryArr+'/'+electronicArr+'/'+medicalArr+'/'+managementArr+'/'+buildingArr+'/'+machineArr)
     .subscribe(
       (response: Response) =>  {
         console.log(response.json());
@@ -139,7 +218,26 @@ export class DataService {
     );
   }
 
-
+updateSubEngWeights(userID:string,chemistry:number,
+    software:number,
+    electronic:number,
+    medical:number,
+    management:number,
+    building:number,
+    machine:number,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/updateSubEngWeights',
+    {'userID':userID,'chemistry':chemistry,'software':software,'electronic':electronic,
+    'medical':medical,'management':management,'building':building,'machine':machine})
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
 
   createQuestion(questionId:number,
                  question:string,
@@ -151,7 +249,7 @@ export class DataService {
                  Wbuilding:number,
                  Wmachine:number,
                  callback: Function){
-    this.http.post('https://tobsc-ws.herokuapp.com/createNewQuestion',
+    this.http.post('https://finalproject201808.herokuapp.com/createNewQuestion',
     {'questionId':questionId,'questionData':question,'Wchemistry':Wchemistry,'Wsoftware':Wsoftware,
     'Welectronic':Welectronic,'Wmedical':Wmedical,'Wmanagement':Wmanagement,'Wbuilding':Wbuilding,'Wmachine':Wmachine})
     .subscribe(
@@ -175,7 +273,7 @@ export class DataService {
                  Wmanagement:number,
                  Wbuilding:number,
                  Wmachine:number,callback: Function){
-    this.http.post('https://tobsc-ws.herokuapp.com/updateQuestion',
+    this.http.post('https://finalproject201808.herokuapp.com/updateQuestion',
     {'questionId':questionId,'questionData':questionData,
     'Wchemistry':Wchemistry,'Wsoftware':Wsoftware,
     'Welectronic':Welectronic,'Wmedical':Wmedical,
@@ -190,10 +288,38 @@ export class DataService {
       })
     );    
   }
-
+  
+  updateSumUsersUnsweredYES(questionId:number,
+                 Marketing:number,
+                 inexperienced:number,
+                 Waitress:number,
+                 Sales:number,
+                 Management:number,
+                 female:number,
+                 male:number,
+                 Age18To21:number,
+                 Age22To25:number,
+                 Age26To29:number,
+                 up30:number,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/updateSumUsersUnsweredYES',
+    {'questionId':questionId,'Marketing':Marketing,
+    'inexperienced':inexperienced,'Waitress':Waitress,
+    'Sales':Sales,'Management':Management,
+    'female':female,'male':male,'Age18To21':Age18To21,'Age22To25':Age22To25,
+    'Age26To29':Age26To29,'up30':up30})
+    .subscribe(
+      (res: Response ) => {
+        callback(res.json());
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );    
+  }
 
   deleteQuestion(questionId:number,callback: Function){
-    this.http.post('https://tobsc-ws.herokuapp.com/deleteQuestion',{'questionId':questionId})
+    this.http.post('https://finalproject201808.herokuapp.com/deleteQuestion',{'questionId':questionId})
     .subscribe(
       (res: Response ) => {
         callback(res.json());
@@ -211,7 +337,7 @@ export class DataService {
                    dorms:string,
                    uniSalary:string,
                    institute:string,callback: Function){
-    this.http.post('https://tobsc-ws.herokuapp.com/filterColleges',
+    this.http.post('https://finalproject201808.herokuapp.com/filterColleges',
     {'location':location,'subEng':subEng,'dorms':dorms,
     'uniSalary':uniSalary,'institute':institute})
     .subscribe(
@@ -226,7 +352,7 @@ export class DataService {
   }
 
    getAllSubEng(callback: Function) {
-    this.http.get('https://tobsc-ws.herokuapp.com/getAllSubEng')
+    this.http.get('https://finalproject201808.herokuapp.com/getAllSubEng')
     .subscribe(
       (res: Response ) => {
         callback( res.json() );
@@ -239,7 +365,7 @@ export class DataService {
   }
 
   forgotPassword(email:string,callback: Function) {
-      this.http.post('https://tobsc-ws.herokuapp.com/forgotPassword',{'email':email})
+      this.http.post('https://finalproject201808.herokuapp.com/forgotPassword',{'email':email})
       .subscribe(
         (res: Response ) => {
           callback(res.json());
@@ -253,7 +379,7 @@ export class DataService {
     }
 
    getAllDepartments(callback: Function) {
-    this.http.get('https://tobsc-ws.herokuapp.com/getAllDepartments')
+    this.http.get('https://finalproject201808.herokuapp.com/getAllDepartments')
     .subscribe(
       (res: Response ) => {
         callback( res.json() );
@@ -266,7 +392,7 @@ export class DataService {
   }
 
  getAllColleges(callback: Function) {
-    this.http.get('https://tobsc-ws.herokuapp.com/getAllColleges')
+    this.http.get('https://finalproject201808.herokuapp.com/getAllColleges')
     .subscribe(
       (res: Response ) => {
         callback( res.json() );
@@ -278,6 +404,88 @@ export class DataService {
     );
   }
 
+
+  favoriteColleges(userID:string,liked:string,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/favoriteColleges',
+    {'userID':userID,'liked':liked})
+    .subscribe(
+      (res: Response ) => {
+        callback(res.json());
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );   
+  }
   
+  getCollegesData(callback: Function) {
+    this.http.get('https://finalproject201808.herokuapp.com/getCollegesData')
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error =>{
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
+
+  getDepartmentsData(callback: Function) {
+    this.http.get('https://finalproject201808.herokuapp.com/getDepartmentsData')
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error =>{
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
+
+  unFavoriteColleges(userID:string,liked:string,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/unFavoriteColleges',
+    {'userID':userID,'liked':liked})
+    .subscribe(
+      (res: Response ) => {
+        callback(res.json());
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );   
+  }
+
+getFavoriteUserId(_id:string,callback: Function){
+    this.http.get('https://finalproject201808.herokuapp.com/getFavoriteUserId/'+_id)
+    .subscribe(
+      (res: Response ) => {
+        callback( res.json() );
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );
+  }
+
+  rateColleges(userID:string,college:string,numOfStars:number,callback: Function){
+    this.http.post('https://finalproject201808.herokuapp.com/rateColleges',
+    {'userID':userID,'college':college,'numOfStars':numOfStars})
+    .subscribe(
+      (res: Response ) => {
+        callback(res.json());
+      },
+      (error => {
+        console.log(error);
+        callback(null);
+      })
+    );   
+  }
+
+
 
 }
